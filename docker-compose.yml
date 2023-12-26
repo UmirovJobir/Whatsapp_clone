@@ -5,11 +5,21 @@ services:
     restart: always
     container_name: web
     build: .
+    command: 
+      - python3 manage.py runserver 0.0.0.0:8000 --insecure 
+    ports:
+      - 8000:8000
+
+      # - gunicorn 
+      # - imodels.wsgi:application 
+      # - --bind
+      # - 0.0.0.0:8000
     # depends_on:
     #   - db
     # env_file:
     #   - .env
-
+    # volumes:
+    #   - ./mediafiles:/usr/src/app/mediafiles
 
   # db:
   #   restart: always
@@ -19,6 +29,10 @@ services:
   #     - "5431:5432"
   #   env_file:
   #     - .env
+  #   environment:
+  #     POSTGRES_DB: Imodels_prod
+  #     POSTGRES_USER: imodels_user
+  #     POSTGRES_PASSWORD: Imodels_db_2023.!
   #   volumes:
   #     - ./postgres_data:/var/lib/postgresql/data/
   
