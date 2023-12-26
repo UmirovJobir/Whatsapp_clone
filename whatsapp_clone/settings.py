@@ -26,7 +26,8 @@ SECRET_KEY = 'd0!_r6_-lkj8o3ctyvqf4-&u0f8oay#u7lwi_!^w%k+6byvv59'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '185.104.114.111', 'http://jobir.uz', 'www.jobir.uz']
+# ALLOWED_HOSTS = ['127.0.0.1', '185.104.114.111', 'http://jobir.uz', 'www.jobir.uz']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
