@@ -5,8 +5,8 @@ services:
     restart: always
     container_name: web
     build: .
-    command: 
-      - python3 manage.py runserver 0.0.0.0:8000 --insecure 
+    # command: 
+      # - python3 manage.py runserver 0.0.0.0:8000 --insecure 
     ports:
       - 8000:8000
 
