@@ -5,10 +5,10 @@ services:
     restart: always
     container_name: web
     build: .
-    depends_on:
-      - db
-    env_file:
-      - .env
+    # depends_on:
+    #   - db
+    # env_file:
+    #   - .env
 
 
   # db:
