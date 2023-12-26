@@ -160,10 +160,10 @@
 </div>
 {{user.id|json_script:"json-username"}}
 {{request.user.username|json_script:"json-message-username"}}
-<!-- {{user.username|json_script:"json-username-receiver"}} -->
+{{user.username|json_script:"json-username-receiver"}}
 {% endblock %}
 {% block javascript %}
 <script src="{% static 'js/chat.js' %}"></script>
-<!-- <script src="{% static 'js/online_status.js' %}"></script>
-<script src="{% static 'js/notify.js' %}"></script> -->
+<script src="{% static 'js/online_status.js' %}"></script>
+<script src="{% static 'js/notify.js' %}"></script>
 {% endblock %}

@@ -1,5 +1,6 @@
 const id = JSON.parse(document.getElementById('json-username').textContent);
 const message_username = JSON.parse(document.getElementById('json-message-username').textContent);
+const receiver = JSON.parse(document.getElementById('json-username-receiver').textContent);
 
 const socket = new WebSocket(
     'ws://'
@@ -46,7 +47,9 @@ document.querySelector('#chat-message-submit').onclick = function(e){
 
     socket.send(JSON.stringify({
         'message': message,
-        'username': message_username
+        'username': message_username,
+        'receiver': receiver
     }));
     message_input.value = '';
 }
+

@@ -17,7 +17,7 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 
 from channels.auth import AuthMiddlewareStack
 
-from chat.consumers import PersonalChatConsumer
+from chat.consumers import PersonalChatConsumer, OnlineStatusConsumer, NotificationConsumer
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'whatsapp_clone.settings')
 
@@ -27,6 +27,8 @@ application = ProtocolTypeRouter({
     'websocket': AuthMiddlewareStack(
         URLRouter([
             path("ws/<int:id>/", PersonalChatConsumer.as_asgi()),
+            path("ws/online/", OnlineStatusConsumer.as_asgi()),
+            path("ws/notify/", NotificationConsumer.as_asgi()),
         ])
     )
 })
