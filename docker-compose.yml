@@ -9,6 +9,15 @@ services:
       # - python3 manage.py runserver 0.0.0.0:8000 --insecure 
     ports:
       - 8000:8000
+    volumes:
+      - ./data:/usr/src/app
+    depends_on:
+      - db
+
+  db:
+    image: "sqlite:latest"
+    volumes:
+      - ./data:/var/lib/sqlite/data
 
       # - gunicorn 
       # - imodels.wsgi:application 
