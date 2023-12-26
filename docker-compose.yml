@@ -1,0 +1,36 @@
+version: '3.3'
+
+services:
+  web:
+    restart: always
+    container_name: web
+    build: .
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+
+  # db:
+  #   restart: always
+  #   image: postgres:15-alpine
+  #   container_name: db
+  #   ports:
+  #     - "5431:5432"
+  #   env_file:
+  #     - .env
+  #   volumes:
+  #     - ./postgres_data:/var/lib/postgresql/data/
+  
+  # nginx:
+  #   restart: unless-stopped
+  #   image: nginx
+  #   container_name: web_nginx
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+  #     - ./staticfiles:/usr/src/app/staticfiles
+  #     - ./mediafiles:/usr/src/app/mediafiles
+  #   ports:
+  #     - 8080:80
+  #   depends_on:
+  #     - web
