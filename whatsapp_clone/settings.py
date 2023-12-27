@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 from environs import Env
+from django.urls import reverse_lazy
 
 env = Env()
 env.read_env()
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 
     'channels',
     'chat',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -95,25 +97,14 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": env.str("SQL_ENGINE", "django.db.backends.sqlite3"),
-#         "NAME": env.str("SQL_DATABASE", BASE_DIR / "db.sqlite3"),
-#         "USER": env.str("SQL_USER", "user"),
-#         "PASSWORD": env.str("SQL_PASSWORD", "password"),
-#         "HOST": env.str("SQL_HOST", "localhost"),
-#         "PORT": env.str("SQL_PORT", "5432"),
-#     }
-# }
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'chat_db',
-        'USER': 'jobir',
-        'PASSWORD': '5Noyabr2022',
-        'HOST': 'db',
-        'PORT': '5432',
+    "default": {
+        "ENGINE": env.str("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": env.str("SQL_DATABASE", BASE_DIR / "db.sqlite3"),
+        "USER": env.str("SQL_USER", "user"),
+        "PASSWORD": env.str("SQL_PASSWORD", "password"),
+        "HOST": env.str("SQL_HOST", "localhost"),
+        "PORT": env.str("SQL_PORT", "5432"),
     }
 }
 
@@ -158,3 +149,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
 # STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn')
+
+
+# LOGIN_REDIRECT_URL = reverse_lazy("chat:home")
+# LOGIN_URL = reverse_lazy("accounts:login")
