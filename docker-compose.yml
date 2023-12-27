@@ -5,48 +5,12 @@ services:
     restart: always
     container_name: web
     build: .
-    # command: 
-      # - python3 manage.py runserver 0.0.0.0:8000 --insecure 
     ports:
       - 8000:8000
     volumes:
       - ./data:/var/lib/sqlite/data
+    depends_on:
+      - redis
 
-      # - gunicorn 
-      # - imodels.wsgi:application 
-      # - --bind
-      # - 0.0.0.0:8000
-    # depends_on:
-    #   - db
-    # env_file:
-    #   - .env
-    # volumes:
-    #   - ./mediafiles:/usr/src/app/mediafiles
-
-  # db:
-  #   restart: always
-  #   image: postgres:15-alpine
-  #   container_name: db
-  #   ports:
-  #     - "5431:5432"
-  #   env_file:
-  #     - .env
-  #   environment:
-  #     POSTGRES_DB: Imodels_prod
-  #     POSTGRES_USER: imodels_user
-  #     POSTGRES_PASSWORD: Imodels_db_2023.!
-  #   volumes:
-  #     - ./postgres_data:/var/lib/postgresql/data/
-  
-  # nginx:
-  #   restart: unless-stopped
-  #   image: nginx
-  #   container_name: web_nginx
-  #   volumes:
-  #     - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-  #     - ./staticfiles:/usr/src/app/staticfiles
-  #     - ./mediafiles:/usr/src/app/mediafiles
-  #   ports:
-  #     - 8080:80
-  #   depends_on:
-  #     - web
+  redis:
+    image: redis:7-alpine
