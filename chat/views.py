@@ -11,7 +11,6 @@ def index(request):
     return render(request, 'index.html', {'users': users})
 
 def chatPage(request, username):
-    print(username)
     user_obj = User.objects.get(username=username)
     users = User.objects.exclude(username=request.user.username)
 
