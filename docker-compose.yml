@@ -28,7 +28,7 @@ services:
       - .env
     environment:
       POSTGRES_DB: Chat_db
-      POSTGRES_USER: jobir
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 5Noyabr2022
     volumes:
       - ./postgres_data:/var/lib/postgresql/data/
