@@ -27,9 +27,9 @@ services:
     env_file:
       - .env
     environment:
-      POSTGRES_DB: Chat_db
+      POSTGRES_DB: chat_db
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 5Noyabr2022
+      POSTGRES_PASSWORD: postgres
     volumes:
       - ./postgres_data:/var/lib/postgresql/data/
   
