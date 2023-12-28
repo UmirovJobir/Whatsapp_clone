@@ -5,7 +5,8 @@ const notify_socket = new WebSocket(
     + 'notify/'
 );
 
-socket.onopen = function(e){
+
+notify_socket.onopen = function(e){
     console.log("CONNECTED TO NOTIFICATION");
 }
 
@@ -16,10 +17,10 @@ notify_socket.onmessage = function(e){
     count_badge.innerHTML = data.count
 }
 
-socket.onclose = function(e){
+notify_socket.onclose = function(e){
     console.log("DISCONNECTED FROM NOTIFICATION");
 }
 
-socket.onerror = function(e){
+notify_socket.onerror = function(e){
     console.log("ERROR OCCURED");
 }

@@ -77,8 +77,6 @@
                                 {% endif %}
                             </tr>
                             {% endfor %}
-
-                            <!-- end -->
                         </tbody>
                     </table>
                 </div>
@@ -166,4 +164,39 @@
 <script src="{% static 'js/chat.js' %}"></script>
 <script src="{% static 'js/online_status.js' %}"></script>
 <script src="{% static 'js/notify.js' %}"></script>
+<script>
+    function scrollToLastMessage() {
+        const chatBody = document.getElementById('chat-body');
+        const lastMessage = chatBody.lastElementChild;
+        if (lastMessage) {
+            lastMessage.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+        }
+    }
+
+    // Initial scroll to the last message when the page is loaded
+    document.addEventListener('DOMContentLoaded', scrollToLastMessage);
+
+    // Function to append new messages to the chat and scroll to the last message
+    function appendAndScroll(messages) {
+        const chatBody = document.getElementById('chat-body');
+
+        messages.forEach(message => {
+            const messageElement = document.createElement('tr');
+            messageElement.innerHTML = `
+                <td>
+                    <p class="bg-primary p-2 mt-2 mr-5 shadow-sm text-white float-left rounded">
+                        ${message.message}
+                    </p>
+                </td>
+                <td>
+                    <p><small class="p-1 shadow-sm">${message.timestamp}</small></p>
+                </td>
+            `;
+            chatBody.appendChild(messageElement);
+        });
+
+        // Scroll to the last message after adding new messages
+        scrollToLastMessage();
+    }
+</script>
 {% endblock %}

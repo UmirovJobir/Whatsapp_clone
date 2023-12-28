@@ -38,13 +38,26 @@
                                 </svg>
                             </span>
                             
-                            {% for user in users %}
+                            <!-- {% for user in users %}
                             <tr>
                                 <td><img src="{% static 'assets/dp.png' %}" alt="" class="profile-image rounded-circle">
                                 </td>
                                 <td><a href="{% url 'chat:chat_room' username=user.username %}">{{user.username}}</a></td>
                             </tr>
+                            {% endfor %} -->
+
+                            {% for user in users %}
+                            <tr>
+                                <td><img src="{% static 'assets/dp.png' %}" alt="" class="profile-image rounded-circle">
+                                </td>
+                                {% if user.userprofilemodel.online_status %}
+                                <td><a style="color: green" id="{{user.username}}_status" href="{% url 'chat:chat_room' username=user.username %}">{{user.username}}</a></td>
+                                {% else %}
+                                <td><a style="color: grey" id="{{user.username}}_status" href="{% url 'chat:chat_room' username=user.username %}">{{user.username}}</a></td>
+                                {% endif %}
+                            </tr>
                             {% endfor %}
+
 
                             <!-- end -->
                         </tbody>
@@ -54,7 +67,12 @@
             </div>
         </div>
     </div>
-
 </div>
-
+{{user.id|json_script:"json-username"}}
+{{request.user.username|json_script:"json-message-username"}}
+{{user.username|json_script:"json-username-receiver"}}
+{% endblock %}
+{% block javascript %}
+<script src="{% static 'js/online_status.js' %}"></script>
+<script src="{% static 'js/notify.js' %}"></script>
 {% endblock %}
