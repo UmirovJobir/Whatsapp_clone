@@ -43,7 +43,7 @@ class PersonalChatConsumer(AsyncWebsocketConsumer):
             {
                 'type': 'chat_message',
                 'message': message,
-                'username': username
+                'username': username,
             }
         )
     
@@ -53,7 +53,7 @@ class PersonalChatConsumer(AsyncWebsocketConsumer):
 
         await self.send(text_data=json.dumps({
             'message': message,
-            'username': username
+            'username': username,
         }))
 
     @database_sync_to_async

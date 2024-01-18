@@ -141,12 +141,12 @@
                         </svg>
                     </div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="message_input" placeholder="Write message...">
+                        <input type="text" class="form-control" id="message_input" oninput="checkInput()" placeholder="Write message...">
 
                     </div>
                     <div class="col-sm-2 mt-1">
                         <div class="control">
-                            <button class="btn btn-success" id="chat-message-submit">Submit</button>
+                            <button class="btn btn-success" id="chat-message-submit" disabled>Submit</button>
                         </div>
                     </div>
 
@@ -164,6 +164,19 @@
 <script src="{% static 'js/chat.js' %}"></script>
 <script src="{% static 'js/online_status.js' %}"></script>
 <script src="{% static 'js/notify.js' %}"></script>
+<script>
+    function checkInput() {
+        const inputField = document.getElementById('message_input');
+        const submitButton = document.getElementById('chat-message-submit');
+  
+        // Enable the submit button if the input is not empty, otherwise disable it
+        if (inputField.value.trim() !== '') {
+          submitButton.removeAttribute('disabled');
+        } else {
+          submitButton.setAttribute('disabled', 'disabled');
+        }
+      }
+</script>
 <script>
     function scrollToLastMessage() {
         const chatBody = document.getElementById('chat-body');
